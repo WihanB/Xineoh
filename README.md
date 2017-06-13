@@ -11,6 +11,8 @@ Running this file will fetch the data from the SQL server, create local storage 
 Please Note: TF records files are rather verbose, as a result they use quite a lot of storage.
 
 After this has been run, the data will be resampled in order to produce a new training set which solves the class imbalance problem
-Once again this is a very large file (700mb) This is probably the slowest part of the process due to an inefficiency in tensorflow's resampling code (I have edited in in mine but it will still be slow in your installation) . The reason these files have been created is that in the case where we are not solving a toy problem such as MNIST, it will be possible to still train a model without running OOM. You will notice that the predictor is not memory intensive at all.
+Once again this is a very large file (700mb) This is probably the slowest part of the process due to an inefficiency in tensorflow's resampling code (I have edited in in mine but it will still be slow in your installation).
 
-Once the data has been resampled the Convolutional Neural Network will be trained and the output produced, the model has an accuracy of around 99.1% based on initialisation
+The reason these records files have been created is that in the case where we are not solving a toy problem such as MNIST and the dataset is too large to fit in memory. These records allow tensorflow to read from file during the training process, it also allows training on a distributed computing platform such as hadoop. You will notice that the predictor is not memory intensive at all.
+
+Once the data has been resampled the Convolutional Neural Network will be trained and the output produced, the model has an accuracy of around 99.1% based on initialisation(worst case I have found is 99%)
